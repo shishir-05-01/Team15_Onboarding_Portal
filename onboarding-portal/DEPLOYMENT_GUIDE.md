@@ -1,10 +1,5 @@
 # Deployment Guide - Personalized Onboarding Portal
 
-## Current Status
-
-✅ **Frontend Deployed**: https://lgvsdcwv.manus.space
-⚠️ **Firebase Setup Required**: Authentication and database need configuration
-
 ## What's Working
 
 - **Static Frontend**: The application is deployed and accessible
