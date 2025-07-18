@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .enhanced-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+    }
+
+    .enhanced-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      padding: 3rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+    }
+
+    .enhanced-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .enhanced-subtitle {
+      color: #6b7280;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .enhanced-input-group {
+      position: relative;
+      margin-top: 1.5rem;
+    }
+
+    .enhanced-input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3.5rem;
+      border: 2px solid rgba(209, 213, 219, 0.5);
+      border-radius: 16px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .enhanced-input:focus {
+      border-color: #667eea;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .enhanced-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #6b7280;
+      pointer-events: none;
+    }
+
+    .enhanced-input:focus + .input-icon {
+      color: #667eea;
+    }
+
+    .enhanced-button {
+      width: 100%;
+      padding: 1rem 2rem;
+      margin: 1rem 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enhanced-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .enhanced-button:hover::before {
+      left: 100%;
+    }
+
+    .enhanced-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .enhanced-button:active {
+      transform: translateY(-1px);
+    }
+
+    .enhanced-link {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      background: rgba(102, 126, 234, 0.05);
+      border: 1px solid rgba(102, 126, 234, 0.1);
+    }
+
+    .enhanced-link:hover {
+      background: rgba(102, 126, 234, 0.1);
+      color: #5a67d8;
+      transform: translateY(-2px);
+    }
+
+    .decorative-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+      filter: blur(60px);
+      pointer-events: none;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .decorative-orb:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: -150px;
+      right: -150px;
+      animation-delay: 0s;
+    }
+
+    .decorative-orb:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      bottom: -200px;
+      left: -200px;
+      animation-delay: 2s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.1); }
+    }
+
+    @media (max-width: 640px) {
+      .glass-card {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+      }
+
+      .enhanced-title {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="enhanced-bg">
+    <div class="decorative-orb"></div>
+    <div class="decorative-orb"></div>
+    <div class="glass-card">
+      <div class="text-center mb-8">
+        <div style="display:inline-flex; align-items:center; justify-content:center; width:4rem; height:4rem; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:50%; box-shadow:0 10px 25px rgba(102, 126, 234, 0.3); margin-bottom:1.5rem;">
+          <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h2 class="enhanced-title">Sign in to your account</h2>
+        <p class="enhanced-subtitle">Welcome back! Please enter your details</p>
+      </div>
+
+      <form>
+        <div class="enhanced-input-group">
+          <input id="email-address" name="email" type="email" required class="enhanced-input" placeholder="Email address" />
+          <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+          </svg>
+        </div>
+
+        <div class="enhanced-input-group">
+          <input id="password" name="password" type="password" required class="enhanced-input" placeholder="Password" />
+          <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+
+        <button type="submit" class="enhanced-button">
+          <span style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+            Sign in
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </span>
+        </button>
+      </form>
+
+      <div class="text-center">
+        <button class="enhanced-link">Need an account? Register</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
